@@ -1,0 +1,745 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service.starlink.ke</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@450;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #31cc1d;
+            --primary-dark: #5db3b9;
+            --primary-light: #EEF2FF;
+            --accent: #10B981;
+            --dark: #1F2937;
+            --light: #FFFFFF;
+            --gray: #6B7280;
+            --dark-bg: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            min-height: 100vh;
+            color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: var(--light);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 24px;
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .payment-info {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0 20px 20px;
+            text-align: center;
+            font-size: 15px;
+            border: 1px solid rgba(140, 139, 177, 0.2);
+        }
+        
+        /* Payment Confirmation Form */
+        .confirmation-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0 20px 20px;
+            border-radius: 10px;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .form-title {
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .form-title i {
+            color: var(--accent);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(49, 204, 29, 0.1);
+        }
+        
+        .form-textarea::placeholder {
+            color: #adb5bd;
+        }
+        
+        .form-hint {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .form-hint i {
+            color: var(--accent);
+        }
+        
+        .submit-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0CA678;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .packages-container {
+            padding: 0 20px 20px;
+        }
+        
+        .package-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
+        }
+        
+        .package-header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 14px 16px;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .package-body {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .package-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .package-features {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        .buy-btn {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .buy-btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(187, 177, 91, 0.3);
+        }
+        
+        .buy-btn i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        
+        .inquiry {
+            background-color: #F9FAFB;
+            padding: 16px;
+            margin: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .inquiry p {
+            color: var(--gray);
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .email {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .email:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .whatsapp-btn {
+            background-color: var(--accent);
+            color: var(--light);
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 12px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            background-color: #0CA678;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--light);
+            border-radius: 10px;
+            max-width: 450px;
+            width: 90%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            animation: modalOpen 0.3s forwards;
+        }
+        
+        @keyframes modalOpen {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 18px;
+        }
+        
+        .close-modal {
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--light);
+            transition: all 0.2s;
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 20px;
+            color: var(--gray);
+        }
+        
+        .modal-body p {
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .proceed-btn {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .proceed-btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        
+        .proceed-btn i {
+            margin-right: 8px;
+        }
+
+        /* M-Pesa payment instructions */
+        .mpesa-instructions {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+
+        .mpesa-instructions h3 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .mpesa-instructions ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .mpesa-instructions li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .till-number {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e9f7ef;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border: 1px solid #d1e7dd;
+        }
+
+        .till-number span {
+            font-weight: bold;
+            color: #0f5132;
+        }
+
+        .copy-till-btn {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-till-btn:hover {
+            background-color: #0b5ed7;
+        }
+
+        .copy-till-btn i {
+            margin-right: 5px;
+        }
+        
+        /* Success message */
+        .success-message {
+            display: none;
+            background-color: #d1e7dd;
+            color: #0f5132;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #badbcc;
+            text-align: center;
+            font-weight: 500;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .package-header {
+                font-size: 15px;
+                padding: 12px;
+            }
+            
+            .package-price {
+                font-size: 18px;
+            }
+            
+            .confirmation-form {
+                padding: 15px;
+                margin: 0 15px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Select a Package</h1>
+            <div class="payment-info">Starlink Home <i>(Pay via M-Pesa)</i></div>
+            
+            <!-- M-Pesa Confirmation Form -->
+            <div class="confirmation-form">
+                <div class="form-title">
+                    <i class="fas fa-sms"></i> M-Pesa Payment Confirmation
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Paste your M-Pesa confirmation message:
+                    </label>
+                    <textarea 
+                        class="form-textarea" 
+                        id="mpesaMessage" 
+                        placeholder="Example: XXXX Confirmed. Ksh100.00 sent to BUSINESS NAME on 15/12/2023 at 14:30. New M-PESA balance is KshXXXX..."
+                    ></textarea>
+                    <div class="form-hint">
+                        <i class="fas fa-info-circle"></i>
+                        Paste the exact message you received from M-Pesa after payment
+                    </div>
+                </div>
+                <button class="submit-btn" onclick="submitMpesaConfirmation()">
+                    <i class="fas fa-paper-plane"></i> Submit Confirmation
+                </button>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> 
+                    Thank you! Your payment confirmation has been received. Service activation is in progress...
+                </div>
+            </div>
+        </div>
+        
+        <div class="packages-container">
+            <!-- Package 1 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <span>Daily - 5GB</span>
+                </div>
+                <div class="package-body">
+                    <div class="package-features">
+                        <div>High-speed internet</div>
+                        <div>Works on all networks</div>
+                    </div>
+                    <div>
+                        <div class="package-price">Ksh 45</div>
+                        <button class="buy-btn" onclick="showPaymentModal('Daily - 5GB (Ksh 45)')">
+                            <i class="fas fa-shopping-cart"></i> Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Package 2 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <span>7 Days - 15GB</span>
+                </div>
+                <div class="package-body">
+                    <div class="package-features">
+                        <div>High-speed internet</div>
+                        <div>Works on all networks</div>
+                    </div>
+                    <div>
+                        <div class="package-price">Ksh 65</div>
+                        <button class="buy-btn" onclick="showPaymentModal('7 Days - 15GB (Ksh 65)')">
+                            <i class="fas fa-shopping-cart"></i> Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Package 3 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <span>3 Weeks - 25GB</span>
+                </div>
+                <div class="package-body">
+                    <div class="package-features">
+                        <div>High-speed internet</div>
+                        <div>Works on all networks</div>
+                    </div>
+                    <div>
+                        <div class="package-price">Ksh 110</div>
+                        <button class="buy-btn" onclick="showPaymentModal('3 Weeks - 25GB (Ksh 110)')">
+                            <i class="fas fa-shopping-cart"></i> Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Package 4 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <span>monthly - 45GB</span>
+                </div>
+                <div class="package-body">
+                    <div class="package-features">
+                        <div>High-speed internet</div>
+                        <div>Works on all networks</div>
+                    </div>
+                    <div>
+                        <div class="package-price">Ksh 190</div>
+                        <button class="buy-btn" onclick="showPaymentModal('Monthly - 50GB(Ksh 190)')">
+                            <i class="fas fa-shopping-cart"></i> Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Package 5 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <span>2Months - UNLIMITED</span>
+                </div>
+                <div class="package-body">
+                    <div class="package-features">
+                        <div>High-speed internet</div>
+                        <div>Works on all networks</div>
+                    </div>
+                    <div>
+                        <div class="package-price">Ksh 300</div>
+                        <button class="buy-btn" onclick="showPaymentModal('2Months - UNLIMITED (Ksh 300)')">
+                            <i class="fas fa-shopping-cart"></i> Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="inquiry">
+            <p>In case of inquiry, contact us at:</p>
+            <a href="mailto:starrlink@g-mail.com" class="email">email us</a>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="paymentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Payment Instructions</h2>
+                <span class="close-modal" onclick="closeModal()">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="mpesa-instructions">
+                    <h3>How to Pay via M-Pesa</h3>
+                    <ol>
+                        <li>Go to M-Pesa on your phone</li>
+                        <li>Select "buy Goods" option</li>
+                        <li>Enter till Number: <strong>6167846</strong></li>
+                        <li>Enter Amount: <strong id="packageAmount">Ksh 190</strong></li>
+                        <li>Enter your M-Pesa PIN and send</li>
+                        <li>Wait for confirmation SMS <b>(starlink KE) </b></li>
+                    </ol>
+                    <div class="till-number">
+                        <span>Business Number: 6167846</span>
+                        <button class="copy-till-btn" onclick="copyToClipboard('6167846')">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+                <p>You have selected: <strong id="selectedPackage">2Months - UNLIMITED (Ksh 190)</strong></p>
+                <p>After payment, your service will be activated within 3 minutes.</p>
+                <p><strong>Important:</strong> After payment, paste your M-Pesa confirmation message in the form above.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPaymentModal(packageName) {
+            document.getElementById('selectedPackage').textContent = packageName;
+            
+            // Extract price from package name
+            const priceMatch = packageName.match(/Ksh (\d+)/);
+            if (priceMatch && priceMatch[1]) {
+                document.getElementById('packageAmount').textContent = 'Ksh ' + priceMatch[1];
+            }
+            
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Copied to clipboard: ' + text);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+        
+        function submitMpesaConfirmation() {
+            const message = document.getElementById('mpesaMessage').value.trim();
+            const successMessage = document.getElementById('successMessage');
+            
+            if (!message) {
+                alert('Please paste your M-Pesa confirmation message');
+                document.getElementById('mpesaMessage').focus();
+                return;
+            }
+            
+            // Check if it looks like an M-Pesa message
+            if (!message.toLowerCase().includes('confirmed') && !message.toLowerCase().includes('ksh')) {
+                if (!confirm("This doesn't look like a standard M-Pesa message. Are you sure this is correct?")) {
+                    return;
+                }
+            }
+            
+            // Show success message
+            successMessage.style.display = 'block';
+            
+            // Scroll to show success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Optional: You can send this data to a server here
+            console.log('M-Pesa confirmation submitted:', message);
+            
+            // Clear the textarea after 2 seconds
+            setTimeout(() => {
+                document.getElementById('mpesaMessage').value = '';
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }, 2000);
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('paymentModal')) {
+                closeModal();
+            }
+        }
+        
+        // Add enter key support for textarea
+        document.getElementById('mpesaMessage').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                submitMpesaConfirmation();
+            }
+        });
+    </script>
+</body>
+</html>
